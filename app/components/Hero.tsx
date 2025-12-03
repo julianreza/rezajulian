@@ -42,7 +42,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <section className="min-h-screen flex items-start md:items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 pt-20 md:pt-0">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((particle, i) => (
@@ -67,19 +67,19 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-4 z-10">
-        <div className="grid md:grid-cols-2 gap-8 items-center h-full">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center h-full">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white"
+            className="text-white text-center md:text-left max-w-xl mx-auto md:mx-0"
           >
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
             >
               Reza Julian
             </motion.h1>
@@ -87,7 +87,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-2xl md:text-3xl mb-6 text-blue-200"
+              className="text-xl md:text-3xl mb-4 md:mb-6 text-blue-200"
             >
               Fullstack Developer
             </motion.p>
@@ -95,7 +95,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-lg md:text-xl mb-8 text-gray-300"
+              className="text-base md:text-xl mb-8 text-gray-300"
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </motion.p>
@@ -103,7 +103,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex gap-4 flex-wrap"
+              className="flex gap-4 flex-wrap justify-center md:justify-start"
             >
               <motion.a
                 href="#projects"
@@ -129,6 +129,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full max-w-sm sm:max-w-md md:max-w-full mx-auto md:mx-0 mt-10 md:mt-0"
           >
             <Hero3D />
           </motion.div>

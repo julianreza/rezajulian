@@ -1,33 +1,29 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useAnimations, useGLTF } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+import { useRef } from "react";
 import * as THREE from "three";
 
 function Avatar() {
-  const { scene, animations } = useGLTF("/programmer.glb");
-  const { actions } = useAnimations(animations, scene);
+  const { scene } = useGLTF("/programmer.glb");
+  
   const ref = useRef<THREE.Group>(null);
 
-  useEffect(() => {
-    // Ganti nama animasi sesuai GLB Reza
-    // Kalau tidak tahu: console.log(animations) dulu
-    const typing = actions["Typing"] || actions["type"] || actions[Object.keys(actions)[0]];
-
-    if (typing) {
-      typing.reset().fadeIn(0.5).play();
+  useFrame((state) => {
+    if (ref.current) {
+      const t = state.clock.getElapsedTime();
+      ref.current.position.y = -1.5 + Math.sin(t * 1.2) * 0.1;
+      ref.current.rotation.y = Math.sin(t * 0.5) * 0.2;
     }
-  }, [actions]);
+  });
 
-  return (
-    <primitive ref={ref} object={scene} scale={1.5} position={[0, -1.5, 0]} />
-  );
+  return <primitive ref={ref} object={scene} scale={1.3} position={[0, -1.5, 0]} />;
 }
 
 export default function ProgrammerModel() {
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-[360px] sm:h-[420px] md:h-screen">
       <Canvas
         camera={{ position: [2.5, 0.5, 3], fov: 60 }}
         style={{ width: "100%", height: "100%" }}
@@ -37,7 +33,7 @@ export default function ProgrammerModel() {
 
         <Avatar />
 
-        <OrbitControls enablePan={false} enableZoom={false} />
+        <OrbitControls enableZoom={false} />
       </Canvas>
     </div>
   );
